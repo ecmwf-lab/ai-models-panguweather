@@ -11,7 +11,10 @@
 
 import io
 import os
+import platform
+import sys
 
+import GPUtil
 import setuptools
 
 
@@ -28,9 +31,13 @@ for line in read("ai_models_panguweather/__init__.py").split("\n"):
 
 assert version
 
-onnxruntime = "onnxruntime-gpu"
 onnxruntime = "onnxruntime"
-onnxruntime = "onnxruntime-silicon"
+if sys.platform == "darwin":
+    if platform.machine() == "arm64":
+        onnxruntime = "onnxruntime-silicon"
+if GPUtil.getAvailable():
+    onnxruntime = "onnxruntime-gpu"
+
 
 setuptools.setup(
     name="ai-models-panguweather",
@@ -43,10 +50,11 @@ setuptools.setup(
     url="https://github.com/ecmwf-lab/ai-models-panguweather",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    install_requires=["GPUtil"],
     install_requires=[
         "ai-models",
         "onnx",
-        onnxruntime,
+        onnxruntime,"GPUtil",
     ],
     zip_safe=True,
     keywords="tool",

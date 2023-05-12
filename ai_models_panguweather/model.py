@@ -63,12 +63,6 @@ class PanguWeather(Model):
         START_TIME = time.time()
         LOG.info("Starting session")
 
-        providers = [
-            "CUDAExecutionProvider", # CUDA
-            # "CoreMLExecutionProvider", # CoreML (mac m1)
-            # This one is not working with error: CoreML does not support input dim > 16384
-            "CPUExecutionProvider", # CPU
-        ]
 
         options = ort.SessionOptions()
         options.enable_cpu_mem_arena = False
@@ -88,14 +82,14 @@ class PanguWeather(Model):
         ort_session_24 = ort.InferenceSession(
             pangu_weather_24,
             sess_options=options,
-            providers=providers,
+            providers=self.providers,
         )
 
         LOG.info("Loading %s", pangu_weather_6)
         ort_session_6 = ort.InferenceSession(
             pangu_weather_6,
             sess_options=options,
-            providers=providers,
+            providers=self.providers,
         )
 
         elapsed = time.time() - START_TIME
