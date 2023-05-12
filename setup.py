@@ -40,7 +40,7 @@ setuptools.setup(
     url="https://github.com/ecmwf-lab/ai-models-panguweather",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["ai-models"],
+    install_requires=["ai-models", "onnx", "onnxruntime-gpu"],
     zip_safe=True,
     keywords="tool",
     entry_points={
