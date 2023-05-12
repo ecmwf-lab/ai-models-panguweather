@@ -54,7 +54,8 @@ setuptools.setup(
     install_requires=[
         "ai-models",
         "onnx",
-        onnxruntime,"GPUtil",
+        onnxruntime,
+        "GPUtil",
     ],
     zip_safe=True,
     keywords="tool",
