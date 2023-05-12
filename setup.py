@@ -40,9 +40,14 @@ setuptools.setup(
     url="https://github.com/ecmwf-lab/ai-models-panguweather",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=['ai-models'],
+    install_requires=["ai-models"],
     zip_safe=True,
     keywords="tool",
+    entry_points={
+        "ai-models.model": [
+            "panguweather = ai_models_panguweather.model:PanguWeather",
+        ]
+    },
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
