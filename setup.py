@@ -41,6 +41,7 @@ if GPUtil.getAvailable():
 
 setuptools.setup(
     name="ai-models-panguweather",
+    python_requires="<3.11",  # For now, does not support Python 3.11
     version=version,
     description="An ai-models plugin to run PanguWeather",
     long_description=read("README.md"),
@@ -50,7 +51,7 @@ setuptools.setup(
     url="https://github.com/ecmwf-lab/ai-models-panguweather",
     packages=setuptools.find_packages(),
     include_package_data=True,
-    install_requires=["GPUtil"],
+    setup_requires=["GPUtil"],
     install_requires=[
         "ai-models",
         "onnx",
