@@ -44,7 +44,7 @@ setuptools.setup(
     zip_safe=True,
     keywords="tool",
     entry_points={
-        "ai-models.model": [
+        "ai_models.model": [
             "panguweather = ai_models_panguweather.model:PanguWeather",
         ]
     },
