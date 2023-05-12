@@ -12,7 +12,7 @@ import time
 
 import numpy as np
 import onnxruntime as ort
-from ai_model.model import Model
+from ai_models.model import Model
 from climetlab.utils.humanize import seconds
 
 LOG = logging.getLogger(__name__)

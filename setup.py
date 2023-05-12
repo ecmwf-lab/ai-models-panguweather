@@ -32,7 +32,7 @@ assert version
 setuptools.setup(
     name="ai-models-panguweather",
     version=version,
-    description="A run ai weather models",
+    description="An ai-models plugin to run PanguWeather",
     long_description=read("README.md"),
     author="European Centre for Medium-Range Weather Forecasts (ECMWF)",
     author_email="software.support@ecmwf.int",
