@@ -12,9 +12,9 @@
 import io
 import os
 import platform
+import subprocess
 import sys
 
-import GPUtil
 import setuptools
 
 
@@ -31,11 +31,37 @@ for line in read("ai_models_panguweather/__init__.py").split("\n"):
 
 assert version
 
+
+def check_gpus():
+    try:
+        n = 0
+        for line in subprocess.check_output(
+            ["nvidia-smi", "-L"],
+            text=True,
+        ).split("\n"):
+            if line.startswith("GPU"):
+                n += 1
+        return n
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return 0
+
+
+def has_gpu():
+    try:
+        import GPUtil
+
+        return len(GPUtil.getAvailable()) > 0
+    except ImportError:
+        return check_gpus() > 0
+
+
 onnxruntime = "onnxruntime"
 if sys.platform == "darwin":
     if platform.machine() == "arm64":
         onnxruntime = "onnxruntime-silicon"
-if GPUtil.getAvailable():
+
+
+if has_gpu():
     onnxruntime = "onnxruntime-gpu"
 
 
