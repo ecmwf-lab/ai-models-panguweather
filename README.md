@@ -2,8 +2,6 @@
 
 `ai-models-panguweather` is an [ai-models](https://github.com/ecmwf-lab/ai-models) plugin to run [Huawei's Pangu-Weather](https://github.com/198808xc/Pangu-Weather).
 
--
-
 Pangu-Weather: A 3D High-Resolution Model for Fast and Accurate Global Weather Forecast, arXiv preprint: 2211.02556, 2022.
 <https://arxiv.org/abs/2211.02556>
 
