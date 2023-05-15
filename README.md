@@ -26,5 +26,5 @@ pip install ai-models-panguweather
 This will install the package and its dependencies, in particular the ONNX runtime. The installation script will attempt to guess which runtime to install. You can force a given runtime by specifying the the `ONNXRUNTIME` variable, e.g.:
 
 ```bash
-ONNXRUNTIME=onnxruntime-cpu pip install ai-models-panguweather
+ONNXRUNTIME=onnxruntime-gpu pip install ai-models-panguweather
 ```
