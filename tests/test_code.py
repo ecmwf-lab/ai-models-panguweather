@@ -5,4 +5,6 @@
 # granted to it by virtue of its status as an intergovernmental organisation
 # nor does it submit to any jurisdiction.
 
-__version__ = "0.0.2"
+
+def test_code():
+    pass  # Empty for now
