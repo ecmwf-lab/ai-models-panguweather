@@ -55,16 +55,13 @@ def has_gpu():
         return check_gpus() > 0
 
 
-if "ONNXRUNTIME" in os.environ:
-    onnxruntime = os.environ["ONNXRUNTIME"]
-else:
-    onnxruntime = "onnxruntime"
-    if sys.platform == "darwin":
-        if platform.machine() == "arm64":
-            onnxruntime = "onnxruntime-silicon"
+onnxruntime = "onnxruntime"
+if sys.platform == "darwin":
+    if platform.machine() == "arm64":
+        onnxruntime = "onnxruntime-silicon"
 
-    if has_gpu():
-        onnxruntime = "onnxruntime-gpu"
+if has_gpu():
+    onnxruntime = "onnxruntime-gpu"
 
 
 setuptools.setup(
@@ -84,7 +81,7 @@ setuptools.setup(
     install_requires=[
         "ai-models",
         "onnx",
-        onnxruntime,
+        os.environ.get("ONNXRUNTIME", onnxruntime),
         "GPUtil",
     ],
     zip_safe=True,
