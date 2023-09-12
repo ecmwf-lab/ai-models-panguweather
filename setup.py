@@ -47,12 +47,7 @@ def check_gpus():
 
 
 def has_gpu():
-    try:
-        import GPUtil
-
-        return len(GPUtil.getAvailable()) > 0
-    except ImportError:
-        return check_gpus() > 0
+    return check_gpus() > 0
 
 
 onnxruntime = "onnxruntime"
@@ -82,7 +77,6 @@ setuptools.setup(
         "ai-models",
         "onnx",
         os.environ.get("ONNXRUNTIME", onnxruntime),
-        "GPUtil",
     ],
     zip_safe=True,
     keywords="tool",
