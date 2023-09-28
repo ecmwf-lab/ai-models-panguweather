@@ -88,27 +88,21 @@ class PanguWeather(Model):
 
         input_24, input_surface_24 = input, input_surface
 
-        with self.stepper(6) as stepper:
-            for i in range(self.lead_time // 6):
-                step = (i + 1) * 6
+        max_24h_steps = self.lead_time // 24
+        max_6h_steps = (self.lead_time - 24* max_24h_steps) // 6
 
-                if (i + 1) % 4 == 0:
-                    output, output_surface = ort_session_24.run(
+        with self.stepper(24) as stepper:
+            for i in range(max_24h_steps):
+                step = (i + 1) * 24
+                output, output_surface = ort_session_24.run(
                         None,
                         {
                             "input": input_24,
                             "input_surface": input_surface_24,
                         },
                     )
-                    input_24, input_surface_24 = output, output_surface
-                else:
-                    output, output_surface = ort_session_6.run(
-                        None,
-                        {
-                            "input": input,
-                            "input_surface": input_surface,
-                        },
-                    )
+                input_24, input_surface_24 = output, output_surface
+
                 input, input_surface = output, output_surface
 
                 # Save the results
@@ -123,3 +117,17 @@ class PanguWeather(Model):
                     self.write(data, template=f, step=step)
 
                 stepper(i, step)
+
+        Step = step
+        with self.stepper(6) as stepper:
+            for i in range(max_6h_steps):
+                step = (i + 1) * 6 + Step
+
+                output, output_surface = ort_session_6.run(
+                    None,
+                    {
+                        "input": input,
+                        "input_surface": input_surface,
+                    },
+                )
+                input, input_surface = output, output_surface
