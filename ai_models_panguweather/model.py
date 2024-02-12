@@ -86,6 +86,8 @@ class PanguWeather(Model):
                 providers=self.providers,
             )
 
+        self.write_input_fields(fields_pl + fields_sfc)
+
         input_24, input_surface_24 = input, input_surface
 
         with self.stepper(6) as stepper:

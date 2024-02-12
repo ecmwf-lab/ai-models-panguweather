@@ -61,7 +61,7 @@ if has_gpu():
 
 setuptools.setup(
     name="ai-models-panguweather",
-    python_requires="<3.11",  # For now, does not support Python 3.11
+    # python_requires="<3.11",  # For now, does not support Python 3.11
     version=version,
     description="An ai-models plugin to run PanguWeather",
     long_description=read("README.md"),
@@ -74,7 +74,7 @@ setuptools.setup(
     include_package_data=True,
     setup_requires=["GPUtil"],
     install_requires=[
-        "ai-models",
+        "ai-models>=0.3.6",
         "onnx",
         os.environ.get("ONNXRUNTIME", onnxruntime),
     ],
