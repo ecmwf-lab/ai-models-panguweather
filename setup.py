@@ -74,7 +74,7 @@ setuptools.setup(
     include_package_data=True,
     setup_requires=["GPUtil"],
     install_requires=[
-        "ai-models>=0.3.6",
+        "ai-models>=0.4.0",
         "onnx",
         os.environ.get("ONNXRUNTIME", onnxruntime),
     ],
