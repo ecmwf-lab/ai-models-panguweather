@@ -11,7 +11,7 @@
 
 import sys
 
-import climetlab as cml
+import earthkit.data as ekd
 import tqdm
 
 date = sys.argv[1]
@@ -24,7 +24,7 @@ if time > 100:
 time = int(time)
 time = f"{time:02d}"
 
-gfs = cml.load_source(
+gfs = ekd.from_source(
     "url-pattern",
     "https://data.rda.ucar.edu/ds084.1/{year}/{date}/"
     "gfs.0p25.{date}{time}.f{step}.grib2",
@@ -62,7 +62,7 @@ fields_sfc = gfs.sel(
 ).order_by(param=param_sfc)
 
 print("Write", output)
-out = cml.new_grib_output(output)
+out = ekd.new_grib_output(output)
 
 G = {"gh": 9.80665}
 PARAM = {"gh": "z", "prmsl": "msl"}
