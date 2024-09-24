@@ -163,3 +163,4 @@ cython_debug/
 *.onnx
 *.grib
 *.out
+_version.py

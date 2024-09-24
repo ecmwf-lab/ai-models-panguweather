@@ -26,8 +26,7 @@ time = f"{time:02d}"
 
 gfs = ekd.from_source(
     "url-pattern",
-    "https://data.rda.ucar.edu/ds084.1/{year}/{date}/"
-    "gfs.0p25.{date}{time}.f{step}.grib2",
+    "https://data.rda.ucar.edu/ds084.1/{year}/{date}/" "gfs.0p25.{date}{time}.f{step}.grib2",
     date=date,
     time=time,
     step="000",

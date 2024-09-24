@@ -18,9 +18,7 @@ LOG = logging.getLogger(__name__)
 
 class PanguWeather(Model):
     # Download
-    download_url = (
-        "https://get.ecmwf.int/repository/test-data/ai-models/pangu-weather/{file}"
-    )
+    download_url = "https://get.ecmwf.int/repository/test-data/ai-models/pangu-weather/{file}"
     download_files = ["pangu_weather_24.onnx", "pangu_weather_6.onnx"]
 
     # Input
