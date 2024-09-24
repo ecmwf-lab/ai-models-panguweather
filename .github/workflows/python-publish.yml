@@ -15,14 +15,13 @@ jobs:
     name: Code QA
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: pip install black flake8 isort
-    - run: black --version
-    - run: isort --version
-    - run: flake8 --version
-    - run: isort --check .
-    - run: black --check .
-    - run: flake8 .
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+    - uses: pre-commit/action@v3.0.1
+      env:
+        SKIP: no-commit-to-branch
 
   checks:
     if: ${{ github.event_name == 'release' }}
