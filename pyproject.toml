@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+# (C) Copyright 2024 ECMWF.
+#
+# This software is licensed under the terms of the Apache Licence Version 2.0
+# which can be obtained at http://www.apache.org/licenses/LICENSE-2.0.
+# In applying this licence, ECMWF does not waive the privileges and immunities
+# granted to it by virtue of its status as an intergovernmental organisation
+# nor does it submit to any jurisdiction.
+
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+
+[build-system]
+requires = [
+  "setuptools>=60",
+  "setuptools-scm>=8",
+]
+
+[project]
+name = "ai-models-panguweather"
+
+description = "An ai-models plugin to run PanguWeather"
+keywords = [
+  "ai",
+  "tools",
+]
+
+license = { file = "LICENSE" }
+authors = [
+  { name = "European Centre for Medium-Range Weather Forecasts (ECMWF)", email = "software.support@ecmwf.int" },
+]
+
+requires-python = ">=3.10"
+
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+
+dynamic = [
+  "version",
+]
+
+dependencies = [
+  "ai-models>=0.7.0",
+  "onnx",
+  "onnxruntime-silicon; sys_platform == 'darwin'",
+  "onnxruntime-gpu; sys_platform == 'linux'"
+]
+
+optional-dependencies.dev = [
+  "pre-commit",
+]
+urls.Repository = "https://github.com/ecmwf-lab/ai-models-panguweather"
+entry-points."ai_models.model".panguweather = "ai_models_panguweather.model:PanguWeather"
+
+[tool.setuptools_scm]
+version_file = "src/ai_models_panguweather/_version.py"
